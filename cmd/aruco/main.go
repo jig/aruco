@@ -7,6 +7,11 @@ import (
 	"gocv.io/x/gocv"
 )
 
+const (
+	cameraWitdh      = 1920
+	cameraWitdhAngle = 70
+)
+
 func main() {
 	// set to use a video capture device 0
 	deviceID := 1
@@ -46,11 +51,9 @@ func main() {
 		markerCorners, markerIds, _ := detector.DetectMarkers(img)
 		for i, marker := range markerIds {
 			if marker == 0 {
-				// height, width, _, _, _ := measure(markerCorners[i])
-				// fmt.Printf("marker=%d x=%f y=%f height=%f width=%f\n", marker, x, y, height, witdh)
-				// fmt.Printf("marker=%d height=%f width=%f\n", marker, height, width)
 				dist, angle := targetPose(markerCorners[i])
-				fmt.Printf("distance=%.1f cm, angle=%.0f°\n", dist/10, angle)
+				cameraAngle := cameraPose(markerCorners[i])
+				fmt.Printf("distance=%.1f cm, angle=%.0f° cameraAngle=%.0f\n", dist/10, angle, cameraAngle)
 				gocv.ArucoDrawDetectedMarkers(img, markerCorners, markerIds, borderColor)
 			}
 		}
@@ -73,6 +76,7 @@ func measure(marker []gocv.Point2f) (float64, float64, float64, float64, bool) {
 
 func targetPose(marker []gocv.Point2f) (dist, angle float64) {
 	height, width, _, _, side := measure(marker)
+	// this constant valid for markers with 14.5 mm side
 	dist = 22500 / height
 	if width > height {
 		angle = 0
@@ -83,4 +87,9 @@ func targetPose(marker []gocv.Point2f) (dist, angle float64) {
 		}
 	}
 	return
+}
+
+func cameraPose(marker []gocv.Point2f) (angle float64) {
+	_, _, x, _, _ := measure(marker)
+	return (x / cameraWitdh * cameraWitdhAngle) - cameraWitdhAngle/2
 }
