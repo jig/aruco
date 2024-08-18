@@ -61,7 +61,7 @@ arucoParams = cv2.aruco.DetectorParameters()
 try:
  # Initialize picamera2
     picam2 = Picamera2()
-    picam2.start_preview(Preview.QTGL)
+    picam2.start_preview(Preview.DRM)
 # Set the stream format
     config = picam2.create_preview_configuration({"size": (640, 480)})
     #preview = Preview(picam2, show_fps=True)
@@ -85,7 +85,7 @@ try:
         detected_markers = aruco_display(corners, ids, rejected, img)
     ##cv2.imshow("Image", detected_markers)
         Preview.show(detected_markers)
-        picam2.start_preview(Preview.QTGL)
+        picam2.start_preview(Preview.DRM)
         key = cv2.waitKey(1) & 0xFF
 
     # clear the stream in preparation for the next frame
