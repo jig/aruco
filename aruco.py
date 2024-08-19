@@ -28,9 +28,10 @@ this_aruco_dictionary = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_1000)
 this_aruco_parameters = cv2.aruco.DetectorParameters_create()
 
 picam2 = Picamera2()
-picam2.start_preview(Preview.DRM, x=0, y=0, width=2028, height=1080)
-config = picam2.create_preview_configuration(main={"size": (2028, 1080)},
-                                             lores={"size": (2028, 1080), "format": "YUV420"})
+# 1332 × 990 p120
+picam2.start_preview(Preview.DRM, x=0, y=0, width=1332, height=990)
+config = picam2.create_preview_configuration(main={"size": (1332, 990)},
+                                             lores={"size": (1332, 990), "format": "YUV420"})
 picam2.configure(config)
 
 (w0, h0) = picam2.stream_configuration("main")["size"]
@@ -52,6 +53,8 @@ while True:
       for id in ids.tolist():
         data.append({
           "id": id,
+          "width": 1332,
+          "high": 990,
           "corners": corners[i].tolist()
         })
         i = i + 1
