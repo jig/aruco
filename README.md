@@ -9,4 +9,4 @@ Tested with:
 
 Based on code from:
 - [How to Detect ArUco Markers Using OpenCV and Python](https://automaticaddison.com/how-to-detect-aruco-markers-using-opencv-and-python/) by Automatic Addison
-- [The Picamera2 Library; A libcamera-based Python library for Rasperry Pi cameras]()
+- [The Picamera2 Library; A libcamera-based Python library for Rasperry Pi cameras](https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf)
