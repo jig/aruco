@@ -58,7 +58,7 @@ while True:
         data.append({
           "id": id,
           "width": 1332,
-          "high": 990,
+          "height": 990,
           "corners": corners[i].tolist()
         })
         i = i + 1
