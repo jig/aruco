@@ -17,6 +17,7 @@ First you need a virtual environment. Several ways to do it, I use a user wide e
 
 ```bash
 python -m venv ~/.env
+python -m venv --system-site-packages ~/.env
 source ~/.env/bin/activate
 ```
 
