@@ -29,7 +29,7 @@ this_aruco_parameters = cv2.aruco.DetectorParameters_create()
 
 picam2 = Picamera2()
 # 1332 × 990 p120
-picam2.start_preview(Preview.DRM, x=0, y=0, width=1332, height=990)
+# picam2.start_preview(Preview.DRM, x=0, y=0, width=1332, height=990)
 config = picam2.create_preview_configuration(main={"size": (1332, 990)},
                                              lores={"size": (1332, 990), "format": "YUV420"})
 picam2.configure(config)
